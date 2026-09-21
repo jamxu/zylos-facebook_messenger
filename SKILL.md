@@ -33,7 +33,7 @@ http_routes:
     type: reverse_proxy
 
 upgrade:
-  repo: sharing-pro-ai/zylos-facebook_messenger
+  repo: jamxu/zylos-facebook_messenger
   branch: main
 
 config:

@@ -8,13 +8,13 @@
     "start": "node src/index.js",
     "test": "node --test"
   },
-  "homepage": "https://github.com/sharing-pro-ai/zylos-facebook_messenger#readme",
+  "homepage": "https://github.com/jamxu/zylos-facebook_messenger#readme",
   "bugs": {
-    "url": "https://github.com/sharing-pro-ai/zylos-facebook_messenger/issues"
+    "url": "https://github.com/jamxu/zylos-facebook_messenger/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sharing-pro-ai/zylos-facebook_messenger.git"
+    "url": "git+https://github.com/jamxu/zylos-facebook_messenger.git"
   },
   "keywords": [
     "zylos",
