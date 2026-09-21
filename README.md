@@ -2,10 +2,10 @@
   <img src="./assets/logo.png" alt="Zylos" height="120">
 </p>
 
-<h1 align="center">zylos-{{COMPONENT_NAME}}</h1>
+<h1 align="center">zylos-facebook_messenger</h1>
 
 <p align="center">
-  {{COMPONENT_DESCRIPTION}}
+  Facebook Messenger channel for Zylos agents
 </p>
 
 <p align="center">
@@ -26,20 +26,20 @@
 ## Install
 
 ```bash
-zylos add {{COMPONENT_NAME}}
+zylos add facebook_messenger
 ```
 
 Or manually:
 
 ```bash
 cd ~/zylos/.claude/skills
-git clone https://github.com/zylos-ai/zylos-{{COMPONENT_NAME}}.git {{COMPONENT_NAME}}
-cd {{COMPONENT_NAME}} && npm install
+git clone https://github.com/zylos-ai/zylos-facebook_messenger.git facebook_messenger
+cd facebook_messenger && npm install
 ```
 
 ## Configuration
 
-Edit `~/zylos/components/{{COMPONENT_NAME}}/config.json`:
+Edit `~/zylos/components/facebook_messenger/config.json`:
 
 ```json
 {

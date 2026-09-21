@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * C4 Communication Bridge Interface for zylos-{{COMPONENT_NAME}}
+ * C4 Communication Bridge Interface for zylos-facebook_messenger
  *
  * This file provides the standard interface for Claude to send messages
  * through this communication component.
@@ -14,6 +14,9 @@
  *   0 - Success
  *   1 - Error (message printed to stderr)
  */
+
+import { getConfig } from '../src/lib/config.js';
+import { sendText as sendMessengerText, sendMedia as sendMessengerMedia } from '../src/lib/messenger-send.js';
 
 // Parse arguments
 const args = process.argv.slice(2);
@@ -49,22 +52,24 @@ async function send() {
  * Send a text message
  */
 async function sendText(endpoint, text) {
-  // TODO: Implement text sending logic
-  // Example:
-  // const response = await fetch(`https://api.example.com/send`, {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ chat_id: endpoint, text }),
-  // });
-  throw new Error('sendText not implemented');
+  const cfg = getConfig();
+  if (!cfg.facebook_page_access_token) {
+    throw new Error('FACEBOOK_PAGE_ACCESS_TOKEN 未設定，請先完成頻道連結');
+  }
+  await sendMessengerText(cfg.facebook_page_access_token, endpoint, text);
 }
 
 /**
  * Send media (image, file, video, etc.)
+ * mediaPath 目前只接受可公開存取的 URL——Messenger Send API 的附件是靠 URL
+ * 抓取，本機檔案路徑要先另外上傳到可公開存取的地方才能用。
  */
-async function sendMedia(endpoint, type, filePath) {
-  // TODO: Implement media sending logic
-  throw new Error('sendMedia not implemented');
+async function sendMedia(endpoint, type, mediaPath) {
+  const cfg = getConfig();
+  if (!cfg.facebook_page_access_token) {
+    throw new Error('FACEBOOK_PAGE_ACCESS_TOKEN 未設定，請先完成頻道連結');
+  }
+  await sendMessengerMedia(cfg.facebook_page_access_token, endpoint, type, mediaPath);
 }
 
 send();

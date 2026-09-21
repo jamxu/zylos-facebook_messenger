@@ -1,50 +1,54 @@
 #!/usr/bin/env node
 /**
- * zylos-{{COMPONENT_NAME}}
+ * zylos-facebook_messenger
  *
- * {{COMPONENT_DESCRIPTION}}
+ * Facebook Messenger channel for Zylos agents
  */
 
 import { getConfig, watchConfig, DATA_DIR } from './lib/config.js';
+import { createApp } from './routes.js';
+import { sendToC4 } from './lib/c4.js';
 
 // Initialize
-console.log(`[{{COMPONENT_NAME}}] Starting...`);
-console.log(`[{{COMPONENT_NAME}}] Data directory: ${DATA_DIR}`);
+console.log(`[facebook_messenger] Starting...`);
+console.log(`[facebook_messenger] Data directory: ${DATA_DIR}`);
 
 // Load configuration
 let config = getConfig();
-console.log(`[{{COMPONENT_NAME}}] Config loaded, enabled: ${config.enabled}`);
+console.log(`[facebook_messenger] Config loaded, enabled: ${config.enabled}`);
 
 if (!config.enabled) {
-  console.log(`[{{COMPONENT_NAME}}] Component disabled in config, exiting.`);
+  console.log(`[facebook_messenger] Component disabled in config, exiting.`);
   process.exit(0);
 }
 
 // Watch for config changes
 watchConfig((newConfig) => {
-  console.log(`[{{COMPONENT_NAME}}] Config reloaded`);
+  console.log(`[facebook_messenger] Config reloaded`);
   config = newConfig;
   if (!newConfig.enabled) {
-    console.log(`[{{COMPONENT_NAME}}] Component disabled, stopping...`);
+    console.log(`[facebook_messenger] Component disabled, stopping...`);
     shutdown();
   }
 });
 
+let server = null;
+
 // Main component logic
 async function main() {
-  // TODO: Implement your component logic here
-  //
-  // Communication components: set up platform SDK, listen for events, forward to C4
-  // Capability components: start HTTP server or other service interface
-  // Utility components: run task and exit (remove the keepalive below)
-
-  console.log(`[{{COMPONENT_NAME}}] Running`);
+  const app = createApp({ sendToC4 });
+  // TODO(facebook-channel): 對齊 SKILL.md http_routes 宣告的埠號（目前 3985
+  // 是 sharing-pro-ai platform 端 /api/webhooks/facebook/route.ts 裡的暫定值）。
+  const port = config.port || 3985;
+  server = app.listen(port, '127.0.0.1', () => {
+    console.log(`[facebook_messenger] Listening on 127.0.0.1:${port}`);
+  });
 }
 
 // Graceful shutdown
 function shutdown() {
-  console.log(`[{{COMPONENT_NAME}}] Shutting down...`);
-  // TODO: Close connections, stop listeners, cleanup
+  console.log(`[facebook_messenger] Shutting down...`);
+  server?.close();
   process.exit(0);
 }
 
@@ -53,6 +57,6 @@ process.on('SIGTERM', shutdown);
 
 // Run
 main().catch(err => {
-  console.error(`[{{COMPONENT_NAME}}] Fatal error:`, err);
+  console.error(`[facebook_messenger] Fatal error:`, err);
   process.exit(1);
 });

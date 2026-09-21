@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Post-upgrade hook for zylos-{{COMPONENT_NAME}}
+ * Post-upgrade hook for zylos-facebook_messenger
  *
  * Called by Claude after CLI upgrade completes (zylos upgrade --json).
  * CLI handles: stop service, backup, file sync, npm install, manifest.
@@ -16,10 +16,10 @@ import fs from 'fs';
 import path from 'path';
 
 const HOME = process.env.HOME;
-const DATA_DIR = path.join(HOME, 'zylos/components/{{COMPONENT_NAME}}');
+const DATA_DIR = path.join(HOME, 'zylos/components/facebook_messenger');
 const configPath = path.join(DATA_DIR, 'config.json');
 
-console.log('[post-upgrade] Running {{COMPONENT_NAME}}-specific migrations...\n');
+console.log('[post-upgrade] Running facebook_messenger-specific migrations...\n');
 
 // Config migrations
 if (fs.existsSync(configPath)) {

@@ -1,7 +1,7 @@
 /**
- * Configuration loader for zylos-{{COMPONENT_NAME}}
+ * Configuration loader for zylos-facebook_messenger
  *
- * Loads config from ~/zylos/components/{{COMPONENT_NAME}}/config.json
+ * Loads config from ~/zylos/components/facebook_messenger/config.json
  * with hot-reload support via file watcher.
  */
 
@@ -9,7 +9,7 @@ import fs from 'fs';
 import path from 'path';
 
 const HOME = process.env.HOME;
-export const DATA_DIR = path.join(HOME, 'zylos/components/{{COMPONENT_NAME}}');
+export const DATA_DIR = path.join(HOME, 'zylos/components/facebook_messenger');
 export const CONFIG_PATH = path.join(DATA_DIR, 'config.json');
 
 // Default configuration
@@ -31,11 +31,11 @@ export function loadConfig() {
       const content = fs.readFileSync(CONFIG_PATH, 'utf8');
       config = { ...DEFAULT_CONFIG, ...JSON.parse(content) };
     } else {
-      console.warn(`[{{COMPONENT_NAME}}] Config file not found: ${CONFIG_PATH}`);
+      console.warn(`[facebook_messenger] Config file not found: ${CONFIG_PATH}`);
       config = { ...DEFAULT_CONFIG };
     }
   } catch (err) {
-    console.error(`[{{COMPONENT_NAME}}] Failed to load config: ${err.message}`);
+    console.error(`[facebook_messenger] Failed to load config: ${err.message}`);
     config = { ...DEFAULT_CONFIG };
   }
   return config;
@@ -61,7 +61,7 @@ export function saveConfig(newConfig) {
     fs.writeFileSync(CONFIG_PATH, JSON.stringify(newConfig, null, 2));
     config = newConfig;
   } catch (err) {
-    console.error(`[{{COMPONENT_NAME}}] Failed to save config: ${err.message}`);
+    console.error(`[facebook_messenger] Failed to save config: ${err.message}`);
     throw err;
   }
 }
@@ -78,7 +78,7 @@ export function watchConfig(onChange) {
   if (fs.existsSync(CONFIG_PATH)) {
     configWatcher = fs.watch(CONFIG_PATH, (eventType) => {
       if (eventType === 'change') {
-        console.log('[{{COMPONENT_NAME}}] Config file changed, reloading...');
+        console.log('[facebook_messenger] Config file changed, reloading...');
         loadConfig();
         if (onChange) {
           onChange(config);

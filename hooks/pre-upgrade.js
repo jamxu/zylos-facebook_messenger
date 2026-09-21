@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pre-upgrade hook for zylos-{{COMPONENT_NAME}}
+ * Pre-upgrade hook for zylos-facebook_messenger
  *
  * Called by Claude BEFORE CLI upgrade steps.
  * If this hook fails (exit code 1), the upgrade is aborted.
@@ -19,10 +19,10 @@ import fs from 'fs';
 import path from 'path';
 
 const HOME = process.env.HOME;
-const DATA_DIR = path.join(HOME, 'zylos/components/{{COMPONENT_NAME}}');
+const DATA_DIR = path.join(HOME, 'zylos/components/facebook_messenger');
 const configPath = path.join(DATA_DIR, 'config.json');
 
-console.log('[pre-upgrade] Running {{COMPONENT_NAME}} pre-upgrade checks...\n');
+console.log('[pre-upgrade] Running facebook_messenger pre-upgrade checks...\n');
 
 // 1. Backup config before upgrade
 if (fs.existsSync(configPath)) {

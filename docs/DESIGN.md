@@ -1,9 +1,9 @@
-# zylos-{{COMPONENT_NAME}} Design Document
+# zylos-facebook_messenger Design Document
 
 **Version**: v1.0.0
-**Date**: {{DATE}}
+**Date**: 2026-09-21
 **Author**: Zylos Team
-**Repository**: https://github.com/zylos-ai/zylos-{{COMPONENT_NAME}}
+**Repository**: https://github.com/zylos-ai/zylos-facebook_messenger
 **Status**: Draft
 
 ---
@@ -17,7 +17,7 @@ Brief description of what this component does and why it exists.
 ### 2.1 Component Structure
 
 ```
-zylos-{{COMPONENT_NAME}}/
+zylos-facebook_messenger/
   docs/
     DESIGN.md         — Architecture/design notes for maintainers and reviews
   src/
@@ -47,7 +47,7 @@ Describe how data flows through the component.
 
 ### 3.2 Config File
 
-Located at `~/zylos/components/{{COMPONENT_NAME}}/config.json`:
+Located at `~/zylos/components/facebook_messenger/config.json`:
 
 ```json
 {

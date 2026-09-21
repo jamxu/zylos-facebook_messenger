@@ -1,21 +1,21 @@
 #!/usr/bin/env node
 /**
- * Configure hook for zylos-{{COMPONENT_NAME}}
+ * Configure hook for zylos-facebook_messenger
  *
  * Called by zylos after collecting SKILL.md config.required values.
  * Receives a JSON object on stdin and writes component-owned config.json.
  *
  * Example stdin:
- *   { "{{COMPONENT_NAME_UPPER}}_API_KEY": "secret" }
+ *   { "FACEBOOK_MESSENGER_API_KEY": "secret" }
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 
 const HOME = process.env.HOME;
-const DATA_DIR = path.join(HOME, 'zylos/components/{{COMPONENT_NAME}}');
+const DATA_DIR = path.join(HOME, 'zylos/components/facebook_messenger');
 const CONFIG_PATH = path.join(DATA_DIR, 'config.json');
-const COMPONENT_PREFIX = '{{COMPONENT_NAME_UPPER}}_';
+const COMPONENT_PREFIX = 'FACEBOOK_MESSENGER_';
 
 const DEFAULT_CONFIG = {
   enabled: true

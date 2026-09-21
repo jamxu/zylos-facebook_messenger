@@ -1,4 +1,4 @@
-# AGENTS.md — zylos-{{COMPONENT_NAME}} engineering conventions
+# AGENTS.md — zylos-facebook_messenger engineering conventions
 
 This file binds every agent (Claude, Codex, or any other) that develops,
 reviews, or releases in this repository. CLAUDE.md points here. Extend it
@@ -10,7 +10,7 @@ Release Process section below.
 - **ESM only** — `import`/`export`, never `require()`. `"type": "module"` in package.json
 - **Node.js 20+** — Minimum runtime version
 - **Conventional commits** — `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`
-- **All config in `~/zylos/components/{{COMPONENT_NAME}}/config.json`** — never committed; code is disposable, data is permanent
+- **All config in `~/zylos/components/facebook_messenger/config.json`** — never committed; code is disposable, data is permanent
 - **English for code** — Comments, commit messages, PR descriptions, documentation
 
 ## Release Process (hard gate)

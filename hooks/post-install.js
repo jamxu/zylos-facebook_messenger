@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Post-install hook for zylos-{{COMPONENT_NAME}}
+ * Post-install hook for zylos-facebook_messenger
  *
  * Called by zylos after configure hook and CLI installation.
  * CLI handles: download, npm install, manifest, registration.
@@ -16,14 +16,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const HOME = process.env.HOME;
-const DATA_DIR = path.join(HOME, 'zylos/components/{{COMPONENT_NAME}}');
+const DATA_DIR = path.join(HOME, 'zylos/components/facebook_messenger');
 
 // Minimal initial config - full defaults are in src/lib/config.js
 const INITIAL_CONFIG = {
   enabled: true
 };
 
-console.log('[post-install] Running {{COMPONENT_NAME}}-specific setup...\n');
+console.log('[post-install] Running facebook_messenger-specific setup...\n');
 
 // 1. Create subdirectories
 console.log('Creating subdirectories...');
